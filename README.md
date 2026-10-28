@@ -2,6 +2,8 @@
 
 **A mathematical model for deploying rangers, drones and cameras across Etosha National Park, Namibia.**
 
+Our team's entry to the Pakistan Mathematics Modelling Competition, April 2026. It won a Silver Award and placed in the top 10 teams nationally.
+
 📄 **[Read the full paper (PDF)](paper/Protecting_Wildlife_at_Scale.pdf)**
 
 ---
@@ -39,6 +41,8 @@ Etosha National Park covers 22,935 km² of savanna, salt pan and grassland, but 
 ## The code
 
 [`model/etosha_model.cpp`](model/etosha_model.cpp) implements every part of the model and checks each one against its expected range: the zone grid, reachability, greedy patrol optimisation, the seasonal Poisson fire model, the Fire Risk Index, the wildlife exit alerts and the dry/wet season comparison.
+
+The paper formulates patrol placement as an integer program. The code solves it with a greedy approximation instead: at each step it places the next ranger wherever it adds the most uncovered risk-weighted area. Coverage problems of this kind are NP-hard in general, and the greedy method is fast, simple to verify, and guaranteed to reach at least about 63% (1 − 1/e) of the optimal coverage. For a 500-zone grid it gets close enough to check the model's behaviour without needing an external solver.
 
 ```bash
 cd model
